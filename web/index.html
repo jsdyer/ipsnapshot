@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Read Shodan InternetDB’s published observations for a public IP address.">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://internetdb.shodan.io; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>IP Snapshot · CoolCode.ca</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+<script type="module" src="./app.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to lookup</a>
+<header class="mast"><div class="wrap">
+  <a class="brand" href="https://coolcode.ca/#workbench"><b aria-hidden="true">&gt;_</b>CoolCode<em>.ca</em></a>
+  <button id="theme" type="button" aria-pressed="false">Dark mode</button>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+  <div><p class="eyebrow">Passive network intelligence</p><h1>IP <em>Snapshot</em></h1><p class="lead">See ports, names and product fingerprints previously associated with a public IP address.</p></div>
+  <form id="lookup" class="terminal">
+    <label for="address">Public IPv4 or IPv6 address</label>
+    <div class="input-line"><input type="text" id="address" name="address" spellcheck="false" autocomplete="off" maxlength="64" placeholder="8.8.8.8" required><button id="submit" type="submit" class="primary">Look up</button></div>
+    <div class="samples" aria-label="Try an example"><button type="button" data-address="8.8.8.8">Google DNS · IPv4</button><button type="button" data-address="2001:4860:4860::8888">Google DNS · IPv6</button></div>
+    <p class="small">Submitting sends the address to Shodan InternetDB. This page performs no network scan of the address.</p>
+  </form>
+</div></section>
+<div class="wrap bench">
+  <p id="status" class="state" role="status" aria-live="polite">Enter one public IP address to fetch its published record.</p>
+  <section class="report" id="report" aria-labelledby="result-title" hidden>
+    <header class="report-head"><div><h2 id="result-title"></h2><p class="muted" id="provenance"></p></div><div class="actions"><button type="button" id="export">Export JSON</button><a id="raw" href="https://internetdb.shodan.io/" target="_blank" rel="noopener noreferrer">Source JSON ↗</a><a id="host-page" href="https://www.shodan.io/" target="_blank" rel="noopener noreferrer">Shodan host ↗</a></div></header>
+    <dl class="stats"><div><dt>Reported ports</dt><dd id="port-count"></dd></div><div><dt>Hostnames</dt><dd id="host-count"></dd></div><div><dt>Fingerprints</dt><dd id="cpe-count"></dd></div><div><dt>Associated CVEs</dt><dd id="cve-count"></dd></div></dl>
+    <div class="grid">
+      <div class="stack">
+        <section class="panel" aria-labelledby="ports-title">
+          <header class="panel-head"><h3 id="ports-title">Reported ports</h3><p class="muted">Labels describe common port assignments. The API supplies no per-port service or transport evidence.</p></header>
+          <div class="panel-body"><div class="field"><label for="port-filter">Filter by port or common service</label><input id="port-filter" type="search" placeholder="22 or DNS"></div></div>
+          <div class="table-wrap"><table><thead><tr><th scope="col">Port</th><th scope="col">Common use</th></tr></thead><tbody id="ports"></tbody></table></div>
+        </section>
+        <section class="panel" aria-labelledby="vulns-title"><header class="panel-head"><h3 id="vulns-title">Associated CVEs</h3><p class="muted">Shodan associates CVEs using observed service metadata. Check the record and installed version before acting.</p></header><div class="panel-body"><ul class="item-list" id="vulns"></ul></div></section>
+      </div>
+      <div class="stack">
+        <section class="panel" aria-labelledby="hosts-title"><header class="panel-head"><h3 id="hosts-title">Hostnames and tags</h3></header><div class="panel-body"><ul class="item-list" id="hosts"></ul><ul class="badges" id="tags" aria-label="Shodan tags"></ul></div></section>
+        <section class="panel" aria-labelledby="cpe-title"><header class="panel-head"><h3 id="cpe-title">Product fingerprints</h3><p class="muted">Common Platform Enumeration identifiers published by Shodan.</p></header><div class="panel-body"><ul class="item-list" id="fingerprints"></ul></div></section>
+      </div>
+    </div>
+  </section>
+  <section class="panel" aria-labelledby="source-title"><header class="panel-head"><h2 id="source-title">Reading a snapshot</h2></header>
+    <div class="panel-body"><p>InternetDB publishes periodic observations and may have incomplete coverage. This tool records the lookup time. The response has no per-observation scan timestamp.</p><p>Records are fetched live and held in this tab. Shodan offers the free InternetDB API for noncommercial use. See the <a href="https://blog.shodan.io/introducing-the-internetdb-api/">InternetDB announcement</a> and the <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml">IANA port registry</a>.</p></div>
+  </section>
+</div>
+</main>
+<footer class="footer"><div class="wrap"><span>CoolCode.ca · IP Snapshot</span><nav aria-label="Sources"><a href="https://internetdb.shodan.io/">Shodan InternetDB ↗</a><a href="https://coolcode.ca/dnslens/">DNS Lens</a><a href="https://github.com/jsdyer/ipsnapshot">Source code ↗</a></nav></div></footer>
+</body></html>
