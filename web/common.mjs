@@ -35,7 +35,7 @@ export function download(filename, body, type = 'application/json') {
 export async function fetchJSON(url, {timeout = 15000, maxBytes = 5_000_000, signal} = {}) {
   const local = AbortSignal.timeout(timeout);
   const response = await fetch(url, {
-    credentials: 'omit', signal: signal ? AbortSignal.any([local, signal]) : local,
+    credentials: 'omit', headers: {Accept: 'application/json'}, signal: signal ? AbortSignal.any([local, signal]) : local,
     referrerPolicy: 'no-referrer',
   });
   if (!response.ok) {
