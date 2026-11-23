@@ -1,0 +1,24 @@
+{
+  "id": "ipsnapshot",
+  "title": "IP Snapshot",
+  "description": "See ports, hostnames and vulnerability identifiers from passive InternetDB observations.",
+  "category": "liminal-tools",
+  "tags": [
+    "ip",
+    "ipv4",
+    "ipv6",
+    "shodan",
+    "osint",
+    "exposure",
+    "ports"
+  ],
+  "icon": "scan-line",
+  "url": "/ipsnapshot/",
+  "source": "https://github.com/jsdyer/ipsnapshot",
+  "hosting": "project",
+  "access": "browser",
+  "data_info": {
+    "mode": "live",
+    "detail": "Shodan InternetDB returns observations for one public IP without observation dates."
+  }
+}
